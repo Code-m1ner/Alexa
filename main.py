@@ -1,7 +1,8 @@
+from codeop import CommandCompiler
 import speech_recognition as sr
 import pyttsx3
+import pyaudio
 import pywhatkit
-import datetimepip
 import wikipedia
 import pyjokes
 
@@ -10,6 +11,7 @@ listener = sr.Recognizer()
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[1].id)
+
 
 def talk(text):
      engine.say(text)
@@ -22,15 +24,15 @@ def take_cmmand():
             voice = listener.listen(source)
             command = listener.recognize_google(voice)
             command = command.lower()
-            if 'alexa' in command:
-                command = command.replace('alexa' , '')
-                #print(command)
+            if 'sofi' in command:
+                command = command.replace('sofi' , '')
+                print(command)
     except:
         pass
     return command
 
 
-def run_alexa():
+def run_sofi():
     command = take_cmmand()
     print(command)
     if 'play' in command:
@@ -53,4 +55,4 @@ def run_alexa():
         talk(pyjokes.get_joke())
     else:
         talk('Please say the command again.')
-run_alexa()
+run_sofi()

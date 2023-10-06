@@ -5,6 +5,7 @@ import pyaudio
 import pywhatkit
 import wikipedia
 import pyjokes
+import datetime
 
 
 listener = sr.Recognizer()
@@ -24,15 +25,17 @@ def take_cmmand():
             voice = listener.listen(source)
             command = listener.recognize_google(voice)
             command = command.lower()
-            if 'sofi' in command:
-                command = command.replace('sofi' , '')
+            if 'alexa' in command:
+                command = command.replace('alexa', '')
                 print(command)
     except:
         pass
+    if not command:
+        return None
     return command
 
 
-def run_sofi():
+def run_alexa():
     command = take_cmmand()
     print(command)
     if 'play' in command:
@@ -55,4 +58,4 @@ def run_sofi():
         talk(pyjokes.get_joke())
     else:
         talk('Please say the command again.')
-run_sofi()
+run_alexa()
